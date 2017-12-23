@@ -1,0 +1,24 @@
+<div class="header">
+    <app-principal
+      [title]="'Página Inicial'"
+    ></app-principal>
+  <app-navigation></app-navigation>
+
+  <div class="demo-tab-content" style="margin: 25px">
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel *ngFor="let item of notifications" (opened)="onOpen()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.type}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{item.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <p>{{item.document.document.name}} : {{item.document.number}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

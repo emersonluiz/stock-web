@@ -1,0 +1,43 @@
+<div class="header">
+  <app-action 
+    [title]="'Entrada de Estoque'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div style="padding: 15px">
+  <mat-form-field [style.width]="'100%'">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="stockin.dateIn" placeholder="Data" required readonly>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'">
+    <mat-select placeholder="Produto" #prod (change)="onChangeProduct(prod.value)" [(ngModel)]="stockin.product" required>
+      <mat-option *ngFor="let product of products" [value]="product.id">
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'" *ngIf="sz">
+    <mat-select placeholder="Tamanho" [(ngModel)]="stockin.size">
+      <mat-option *ngFor="let size of sizeProducts" [value]="size.id">
+        {{ size.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" [style.width]="'100%'">
+    <input matInput [(ngModel)]="stockin.quantity" placeholder="Quantidade" type="number" required>
+  </mat-form-field>
+</div>
+<br />
+<div style="text-align: right; margin-right: 15px">
+  <button mat-raised-button color="primary" type="button" (click)="onSave()">
+      Save
+  </button>
+</div>
+

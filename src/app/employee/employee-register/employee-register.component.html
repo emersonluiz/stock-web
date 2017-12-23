@@ -1,0 +1,314 @@
+<div class="header">
+  <app-action 
+    [title]="'Funcionário'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div class="demo-tab-content" style="margin: 25px">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true"hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Identificação
+        </mat-panel-title>
+        <mat-panel-description>
+          Dados de Identificação
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.name" placeholder="Nome" type="text" value="" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Empresa" [(ngModel)]="employee.company" required>
+          <mat-option *ngFor="let company of companies" [value]="company.id">
+            {{ company.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Cargo" [(ngModel)]="employee.jobPosition" required>
+          <mat-option *ngFor="let jp of jobPositions" [value]="jp.id">
+            {{ jp.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="pickerBirth" [(ngModel)]="employee.birth" placeholder="Nascimento" readonly>
+        <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
+        <mat-datepicker #pickerBirth></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="employee.admission" placeholder="Admissão" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.costCenter" placeholder="Centro de Custo" type="number" value="">
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Endereço
+        </mat-panel-title>
+        <mat-panel-description>
+          Endereço Residencial
+          <mat-icon>place</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Endereço" [(ngModel)]="employee.address"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="City" name="city" [(ngModel)]="employee.city" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="State" [(ngModel)]="employee.state">
+          <mat-option *ngFor="let st of states" [value]="st.code">
+            {{ st.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput #postalCode maxlength="8" placeholder="Postal Code" value="" [(ngModel)]="employee.postalCode">
+        <mat-hint align="end">{{postalCode.value.length}} / 8</mat-hint>
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Contato
+        </mat-panel-title>
+        <mat-panel-description>
+          Telefones e Emails
+          <mat-icon>perm_phone_msg</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-list>
+        <h3 mat-subheader><mat-icon mat-icon>phone</mat-icon>&nbsp;Telefones</h3>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Fixo" value="" [(ngModel)]="employee.phone">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Celular" value="" [(ngModel)]="employee.phoneMobile">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Comercial" value="" [(ngModel)]="employee.phoneBusiness">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+            <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Outro" value="" [(ngModel)]="employee.phoneOther">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <br><br>
+        <mat-divider></mat-divider>
+        <br>
+        <h3 mat-subheader><mat-icon mat-icon>email</mat-icon>&nbsp;Emails</h3>
+        <mat-list-item>
+          <p mat-line>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Particular" value="" [(ngModel)]="employee.email">
+            </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+            <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Comercial" value="" [(ngModel)]="employee.emailBusiness">
+              </mat-form-field>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+              <p mat-line>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Outro" value="" [(ngModel)]="employee.emailOther">
+                </mat-form-field>
+              </p>
+            </mat-list-item>
+      </mat-list>
+      <br><br>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Documentos
+        </mat-panel-title>
+        <mat-panel-description>
+          Diversos Documentos
+          <mat-icon>credit_card</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Documento" [(ngModel)]="employee.document">
+          <mat-option *ngFor="let doc of documents" [value]="doc.id">
+            {{ doc.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.number" placeholder="Numero" type="text" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="employee.issueDate" placeholder="Emissão" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker3" [(ngModel)]="employee.expirationDate" placeholder="Expira em" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.valid" placeholder="Validade" type="number" value="">
+      </mat-form-field>
+
+      <button mat-raised-button (click)="onAddDocument()"><mat-icon>add_circle_outline</mat-icon> Adicionar documento</button>
+
+      <br><br><br>
+
+      <div *ngFor="let item of employee.documents">
+        <div>{{item.document.name}}<span *ngIf="item.number !== null"> : {{item.number}}</span></div>
+        <div *ngIf="item.issueDate !== null">Data de Emissão: {{item.issueDate | date:'dd/MM/yyyy'}}</div>
+        <div *ngIf="item.expirationDate !== null">Expira em: {{item.expirationDate | date:'dd/MM/yyyy'}}</div>
+        <div *ngIf="item.validity !== null">Validade: {{item.validity}} meses</div>
+        <div style="border-top: 1px solid #E9E9E9; margin-bottom:20px; padding-top: 10px; color: rgba(7, 7, 7, 0.57);">
+          <div style="width: 100%; text-align: center"><button mat-button (click)="onDelete(item, employee.documents)"><mat-icon>delete</mat-icon> Excluir</button></div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Treinamentos
+        </mat-panel-title>
+        <mat-panel-description>
+          Cursos, Integrações, etc...
+          <mat-icon>school</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.place" placeholder="Lugar" type="text" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.type" placeholder="Tipo" type="text" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker4" [(ngModel)]="employee.initialDate" placeholder="Inicio" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker5" [(ngModel)]="employee.finalDate" placeholder="Fim" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+        <mat-datepicker #picker5></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="employee.validTraining" placeholder="Validade" type="number" value="">
+      </mat-form-field>
+
+      <button mat-raised-button (click)="onAddTraining()"><mat-icon>add_circle_outline</mat-icon> Adicionar treinamento</button>
+
+      <br><br><br>
+      
+      <div *ngFor="let item of employee.trainings">
+        <div>Place: {{item.place}}</div>
+        <div *ngIf="item.type !== null">Type: {{item.type}}</div>
+        <div *ngIf="item.initialDate !== null">De: {{item.initialDate | date:'dd/MM/yyyy'}} Até: {{item.finalDate | date:'dd/MM/yyyy'}}</div>
+        <div *ngIf="item.valid !== null">Validade: {{item.valid}} meses</div>
+        <div style="border-top: 1px solid #E9E9E9; margin-bottom:20px; padding-top: 10px; color: rgba(7, 7, 7, 0.57);">
+          <div style="width: 100%; text-align: center"><button mat-button (click)="onDelete(item, employee.trainings)"><mat-icon>delete</mat-icon> Excluir</button></div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Férias
+        </mat-panel-title>
+        <mat-panel-description>
+          Agenda de Férias
+          <mat-icon>event</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker6" [(ngModel)]="employee.vacationInitialDate" placeholder="Inicio" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+        <mat-datepicker #picker6></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker7" [(ngModel)]="employee.vacationFinalDate" placeholder="Fim" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+        <mat-datepicker #picker7></mat-datepicker>
+      </mat-form-field>
+
+        <button mat-raised-button (click)="onAddVacation()"><mat-icon>add_circle_outline</mat-icon> Adicionar férias</button>
+
+        <br><br><br>
+
+        <div *ngFor="let item of employee.vacations">
+          <div>De: {{item.initialDate | date:'dd/MM/yyyy'}} Até: {{item.finalDate | date:'dd/MM/yyyy'}}</div>
+          <div style="border-top: 1px solid #E9E9E9; margin-bottom:20px; padding-top: 10px; color: rgba(7, 7, 7, 0.57);">
+            <div style="width: 100%; text-align: center"><button mat-button (click)="onDelete(item, employee.vacations)"><mat-icon>delete</mat-icon> Excluir</button></div>
+          </div>
+        </div>
+        
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<div style="padding: 15px">
+  <br />
+  <div style="text-align: right; margin-right: 15px">
+    <button mat-raised-button color="primary" type="button" (click)="onSave()">
+        Save
+    </button>
+  </div>
+</div>

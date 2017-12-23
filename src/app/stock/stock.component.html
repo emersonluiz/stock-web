@@ -1,0 +1,13 @@
+<div class="header">
+    <app-principal
+      [title]="'Estoque Atual'"
+    ></app-principal>
+  <app-navigation></app-navigation>
+</div>
+
+<div class="topPrincipal"></div>
+
+<mat-card *ngFor="let st of stock">
+    <mat-card-subtitle>{{st.product.name}} ({{st.size.name}})</mat-card-subtitle>
+    <mat-card-content>{{st.quantity}} {{st.product.unity.name}}</mat-card-content>
+</mat-card>

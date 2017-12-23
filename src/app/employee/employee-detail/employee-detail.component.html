@@ -1,0 +1,187 @@
+<div class="header">
+  <app-action 
+    [title]="'Funcionário'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div class="demo-tab-content" style="margin: 25px">
+  
+  <!--<mat-card>
+      <h3>{{employee.name}}</h3>
+      <div>Cargo: {{employee.jobPosition?.name}}</div>
+      <div>Empresa: {{employee.company?.name}}</div>
+      <div>Nascimento: {{employee.birth | date: 'dd/MM/yyyy'}}</div>
+      <div>Admissão: {{employee.admission | date: 'dd/MM/yyyy'}}</div>
+      <div>Centro de Custo: {{employee.costCenter}}</div>
+  </mat-card>
+  <br>-->
+
+<mat-accordion class="example-headers-align">
+
+    <mat-expansion-panel [expanded]="true" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> 
+            Identificação
+          </mat-panel-title>
+          <mat-panel-description>
+            Dados de Identificação
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <h3>{{employee.name}}</h3>
+        <div>Cargo: {{employee.jobPosition?.name}}</div>
+        <div>Empresa: {{employee.company?.name}}</div>
+        <div>Nascimento: {{employee.birthDate | date: 'dd/MM/yyyy'}}</div>
+        <div>Admissão: {{employee.admissionDate | date: 'dd/MM/yyyy'}}</div>
+        <div>Centro de Custo: {{employee.costCenter}}</div>    
+        
+      </mat-expansion-panel>
+    
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Endereço
+      </mat-panel-title>
+      <mat-panel-description>
+        Endereço Residencial
+        <mat-icon>place</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div>Address: {{employee.address?.address}}</div>
+    <div>City: {{employee.address?.city}}</div>
+    <div>State: {{employee.address?.state.name}}</div>
+    <div>Postal Code: {{employee.address?.zipCode}}</div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Contato
+      </mat-panel-title>
+      <mat-panel-description>
+        Telefones e Emails
+        <mat-icon>perm_phone_msg</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <mat-list>
+      <h3 mat-subheader><mat-icon mat-icon>phone</mat-icon>&nbsp;Telefones</h3>
+      <mat-list-item *ngFor="let phone of employee.phones">
+        <p mat-line>
+            {{phone.type}} : {{phone.number}}
+        </p>
+      </mat-list-item>
+     
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <h3 mat-subheader><mat-icon mat-icon>email</mat-icon>&nbsp;Emails</h3>
+      <mat-list-item *ngFor="let email of employee.emails">
+        <p mat-line>
+            {{email.type}} : {{email.email}}
+        </p>
+      </mat-list-item>
+      
+    </mat-list>
+    <br><br>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Documentos
+      </mat-panel-title>
+      <mat-panel-description>
+        Diversos Documentos
+        <mat-icon>credit_card</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let item of employee.documents">
+      <div>{{item.document.name}}<span *ngIf="item.number !== null"> : {{item.number}}</span></div>
+      <div *ngIf="item.issueDate !== null">Data de Emissão: {{item.issueDate | date:'dd/MM/yyyy'}}</div>
+      <div *ngIf="item.expirationDate !== null">Expira em: {{item.expirationDate | date:'dd/MM/yyyy'}}</div>
+      <div *ngIf="item.valid !== null">Validade: {{item.valid}} meses</div>
+      <br />
+    </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Treinamentos
+      </mat-panel-title>
+      <mat-panel-description>
+        Cursos, Integrações, etc...
+        <mat-icon>school</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+  <div *ngFor="let item of employee.trainings">
+    <div>Place: {{item.place}}</div>
+    <div *ngIf="item.type !== null">Type: {{item.type}}</div>
+    <div *ngIf="item.initialDate !== null">De: {{item.initialDate | date:'dd/MM/yyyy'}} Até: {{item.finalDate | date:'dd/MM/yyyy'}}</div>
+    <div *ngIf="item.valid !== null">Validade: {{item.valid}} meses</div>
+    <br />
+  </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Férias
+      </mat-panel-title>
+      <mat-panel-description>
+        Agenda de Férias
+        <mat-icon>event</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let item of employee.vacations">
+        <div>De: {{item.initialDate | date:'dd/MM/yyyy'}} Até: {{item.finalDate | date:'dd/MM/yyyy'}}</div>
+        <br />
+    </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Materiais
+        </mat-panel-title>
+        <mat-panel-description>
+          Materiais fornecidos
+          <mat-icon>shopping_basket</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div style="margin: 15px;">
+        <mat-radio-group>
+          <mat-radio-button value="1" (click)="this.listStockoutByEmployeeId(employee.id, null)">Outros</mat-radio-button>
+          &nbsp;
+          <mat-radio-button value="2" checked="true" (click)="this.listStockoutByEmployeeId(employee.id, '1')">EPI</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-list>
+        <h3 mat-subheader>Materiais Retirados</h3>
+        <mat-list-item *ngFor="let st of stockout">
+          <mat-icon mat-list-icon>local_offer</mat-icon>
+          <h4 mat-line>{{st.product.name}} ({{st.size.name}}) - {{st.quantity}} {{st.product.unity.name}}</h4>
+          <p mat-line> {{st.dateOut | date: 'dd/MM/yyyy'}} </p>
+        </mat-list-item>
+      </mat-list>
+
+  </mat-expansion-panel>
+  
+</mat-accordion>
+</div>

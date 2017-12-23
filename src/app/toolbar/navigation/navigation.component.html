@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+    <table style="width: 100%; text-align: center; color: white">
+        <tr>
+            <td>
+                <button mat-icon-button type="button" (click)="onHome()" matTooltip="Página Inicial">
+                    <mat-icon>home</mat-icon>
+                    <span class="badge" *ngIf="notification !== 0">{{notification}}</span>
+                </button>
+            </td>
+            <td>
+                <button mat-icon-button type="button" (click)="onStockin()" matTooltip="Entrada de Estoque">
+                    <mat-icon>archive</mat-icon>
+                </button>
+            </td>
+            <td>
+                <button mat-icon-button type="button" (click)="onStockout()" matTooltip="Saída de Estoque">
+                    <mat-icon>unarchive</mat-icon>
+                </button>
+            </td>
+            <td>
+                <button mat-icon-button type="button" (click)="onStock()" matTooltip="Estoque Atual">
+                    <mat-icon>developer_board</mat-icon>
+                </button>
+            </td>
+            <td>
+                <button mat-icon-button type="button" (click)="onEmployee()" matTooltip="Funcionário">
+                    <mat-icon>people</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+</mat-toolbar>

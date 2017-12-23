@@ -1,0 +1,82 @@
+<div class="header">
+  <app-action 
+    [title]="'Saída de Estoque'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div style="padding: 15px">
+
+  <mat-radio-group [(ngModel)]="type" [disabled]="stockout.id !== null">
+    <mat-radio-button value="2" checked="true" (click)="onSelectedType(2)">Outros</mat-radio-button>
+    &nbsp;
+    <mat-radio-button value="1" (click)="onSelectedType(1)">EPI</mat-radio-button>
+  </mat-radio-group>
+
+  <br><br>
+
+  <mat-form-field [style.width]="'100%'">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="stockout.dateOut" placeholder="Data" required readonly>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'">
+    <mat-select placeholder="Produto" #prod (change)="onChangeProduct(prod.value)" [(ngModel)]="stockout.product" required>
+      <mat-option *ngFor="let product of products" [value]="product.id">
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'" *ngIf="sz">
+    <mat-select placeholder="Tamanho" [(ngModel)]="stockout.size">
+      <mat-option *ngFor="let size of sizeProducts" [value]="size.id">
+        {{ size.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" [style.width]="'100%'">
+    <input matInput [(ngModel)]="stockout.quantity" placeholder="Quantidade" type="number" required>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'">
+    <mat-select placeholder="Empresa" #cia [(ngModel)]="stockout.company" (change)="listEmployee(cia.value)">
+      <mat-option *ngFor="let company of companies" [value]="company.id">
+        {{ company.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field [style.width]="'100%'">
+    <mat-select placeholder="Funcionário" [(ngModel)]="stockout.employee">
+      <mat-option *ngFor="let employee of employees" [value]="employee.id">
+        {{ employee.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="type === '1'">
+      <mat-form-field class="example-full-width" [style.width]="'100%'">
+        <input matInput [(ngModel)]="stockout.identification" placeholder="Numero CA" type="text">
+      </mat-form-field>
+
+      <mat-form-field [style.width]="'100%'">
+          <mat-select placeholder="Razão" [(ngModel)]="stockout.reason">
+            <mat-option *ngFor="let reason of reasons" [value]="reason.id">
+              {{ reason.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div>
+
+</div>
+<br />
+<div style="text-align: right; margin-right: 15px">
+  <button mat-raised-button color="primary" type="button" (click)="onSave()">
+      Save
+  </button>
+</div>
